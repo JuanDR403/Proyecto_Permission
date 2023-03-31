@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--styles-->
+    <!-- fullCalendar -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/fullcalendar/main.css') }}">
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
@@ -119,6 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @endguest
                         
                     
+          @can('APEsena')
           <li class="nav-item">
             <a href="{{ route('APEsena') }}" class="nav-link">
               <i class="fas fa-user"></i>
@@ -127,6 +130,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endcan
+          @can('APEalimentacion')
           <li class="nav-item">
             <a href="{{ route('APEalimentacion') }}" class="nav-link">
               <i class="fas fa-pizza-slice"></i>
@@ -135,6 +140,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endcan
+          @can('APEinterno')
           <li class="nav-item">
             <a href="{{ route('APEinterno') }}" class="nav-link">
               <i class="fas fa-house-user"></i>
@@ -143,6 +150,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endcan
+          @can('APEtransporte')
           <li class="nav-item">
             <a href="{{ route('APEtransporte') }}" class="nav-link">
               <i class="fas fa-bus"></i>
@@ -151,36 +160,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endcan
+          @can('HISeventos')
           <li class="nav-item">
             <a href="{{ route('HISeventos') }}" class="nav-link">
-              <i class="fas fa-calendar-day"></i>
+              <i class="fas fa-clipboard-list"></i>
               <p>
-                Eventos
+                Convocatorias Apoyos
               </p>
             </a>
           </li>
+          @endcan
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          @yield('content')
-        </div><!-- /.row -->
+          
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    
-    <!-- /.content -->
+    </section>
+    @yield('content')
   </div>
   <!-- /.content-wrapper -->
 
@@ -216,7 +224,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('../AdminLTE-3.2.0/dist/js/adminlte.min.js') }}"></script>
 <!-- js general -->
 <script src="{{ asset('../js/script.js') }}"></script>
+<!-- fullCalendar 2.2.5 -->
+<script src="{{ asset('../AdminLTE-3.2.0/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('../AdminLTE-3.2.0/plugins/fullcalendar/main.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('../AdminLTE-3.2.0/dist/js/demo.js') }}"></script>
+<!-- Page specific script -->
+
 @section('script')
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      timeZone: 'UTC',
+      initialView: 'dayGridMonth',
+      events: 'https://fullcalendar.io/api/demo-feeds/events.json',
+      editable: true,
+      selectable: true
+    });
+
+    calendar.render();
+  });
+</script>
 @show
 
 </body>
