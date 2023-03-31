@@ -51,23 +51,7 @@ class HomeController extends Controller
         return view('HISeventos');
     }
 
-    public function LIDretorant()
-    {
-        return view('LIDretorant');
-    }
+    
 
-    public function LIDrutas()
-    {
-        return view('LIDrutas');
-    }
-
-    public function SCANrestorant()
-    {
-        return view('SCANrestorant');
-    }
-
-    public function SCANrutas()
-    {
-        return view('SCANrutas');
-    }
+  
 }
