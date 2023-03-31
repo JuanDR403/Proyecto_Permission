@@ -19,23 +19,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('can:home')->name('home');
 
-Route::get('/APEalimentacion', [App\Http\Controllers\HomeController::class, 'APEalimentacion'])->name('APEalimentacion');
+Route::get('/APEalimentacion', [App\Http\Controllers\HomeController::class, 'APEalimentacion'])->middleware('can:APEalimentacion')->name('APEalimentacion');
 
-Route::get('/APEsena', [App\Http\Controllers\HomeController::class, 'APEsena'])->name('APEsena');
+Route::get('/APEsena', [App\Http\Controllers\HomeController::class, 'APEsena'])->middleware('can:APEsena')->name('APEsena');
 
-Route::get('/APEinterno', [App\Http\Controllers\HomeController::class, 'APEinterno'])->name('APEinterno');
+Route::get('/APEinterno', [App\Http\Controllers\HomeController::class, 'APEinterno'])->middleware('can:APEinterno')->name('APEinterno');
 
-Route::get('/APEtransporte', [App\Http\Controllers\HomeController::class, 'APEtransporte'])->name('APEtransporte');
+Route::get('/APEtransporte', [App\Http\Controllers\HomeController::class, 'APEtransporte'])->middleware('can:APEtransporte')->name('APEtransporte');
 
-Route::get('/LIDretorant', [App\Http\Controllers\HomeController::class, 'LIDretorant'])->name('LIDretorant');
-
-Route::get('/LIDrutas', [App\Http\Controllers\HomeController::class, 'LIDrutas'])->name('LIDrutas');
-
-Route::get('/SCANrestorant', [App\Http\Controllers\HomeController::class, 'SCANrestorant'])->name('SCANrestorant');
-
-Route::get('/SCANrutas', [App\Http\Controllers\HomeController::class, 'SCANrutas'])->name('SCANrutas');
-
-Route::get('/HISeventos', [App\Http\Controllers\HomeController::class, 'HISeventos'])->name('HISeventos');
-
+Route::get('/HISeventos', [App\Http\Controllers\HomeController::class, 'HISeventos'])->middleware('can:HISeventos')->name('HISeventos');
